@@ -7,6 +7,10 @@ module.exports = {
         console.log('iCum')
         return 'iCame'
       }
+    },
+    testPenis(ctx) {
+      console.log('asiudgasudh')
+      return 'Penis my ass'
     }
   }
 }
