@@ -2,15 +2,10 @@ module.exports = {
   name: 'utility',
   version: 'v1',
   actions: {
-    test: {
-      handler(ctx){
-        console.log('iCum')
-        return 'iCame'
+    testActions: {
+      handler(ctx) {
+        return 'Actions is running'
       }
-    },
-    testPenis(ctx) {
-      console.log('asiudgasudh')
-      return 'Penis my ass'
     }
   }
 }
