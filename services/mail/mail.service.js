@@ -23,6 +23,6 @@ module.exports = {
 
   events: {
     'user.verify': { ...require('./events/user.verify') },
-    //'user.resetPassword': {},
+    'user.requestPasswordReset': { ...require('./events/user.requestPasswordReset') },
   }
 }

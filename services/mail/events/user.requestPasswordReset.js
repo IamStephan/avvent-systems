@@ -7,24 +7,23 @@ module.exports = {
     name: {
       type: 'string'
     },
-    verify_id: {
+    password_reset_id: {
       type: 'string'
     }
   },
 
   async handler(ctx) {
     try {
-      this.actions.send({
+      await this.actions.send({
         to: ctx.params.to,
-        template: 'verify',
+        template: 'request_password_reset',
         data: {
           name: ctx.params.name,
-          verify_id: ctx.params.verify_id
+          password_reset_id: ctx.params.password_reset_id
         }
       })
-    } catch (e) {
+    } catch(e) {
       console.log('could not send email')
     }
-
   }
 }
