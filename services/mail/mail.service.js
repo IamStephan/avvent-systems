@@ -1,4 +1,5 @@
 const mailMixin = require('moleculer-mail')
+const path = require('path')
 
 module.exports = {
   name: 'mail',
@@ -6,9 +7,9 @@ module.exports = {
   mixins: [mailMixin],
 
   settings: {
+    templateFolder: path.join(__dirname, 'templates'),
     transport: {
       service: 'gmail',
-      templateFolder: './templates',
       auth: {
         user: 'avventsystemstest@gmail.com',
         pass: '135798642Awe'
@@ -16,11 +17,12 @@ module.exports = {
     }
   },
 
-  actions: {
+  // actions: {
     
-  },
+  // },
 
   events: {
-
+    'user.verify': { ...require('./events/user.verify') },
+    //'user.resetPassword': {},
   }
 }

@@ -111,9 +111,10 @@ module.exports = {
       return new MoleculerError('Could not create User', 500, 'Server Error')
     }
 
-    this.broker.emit('email', {
+    this.broker.emit('user.verify', {
       to: ctx.params.email,
-      text: verify_id
+      name: createdUser.first_name,
+      verify_id: verify_id
     })
 
     return {
