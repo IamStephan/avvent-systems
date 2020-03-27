@@ -36,8 +36,14 @@ module.exports = {
   },
 
   actions: {
-    signup: { ...require('./user/actions/signup') },
-    login: { ...require('./user/actions/login') },
-    sendVerifyId: { ...require('./user/actions/sendVerifyId') }
+    // Published
+    signup: { ...require('./actions/signup') },
+    verifyUser: { ...require('./actions/verifyUser') },
+    login: { ...require('./actions/login') },
+
+    // Public
+    auth: { ...require('./actions/auth') },
+    getUserById: { ...require('./actions/getUserById') },
+    getUserByEmail: { ...require('./actions/getUserByEmail') },
   }
 }
