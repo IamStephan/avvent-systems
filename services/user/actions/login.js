@@ -32,7 +32,7 @@ module.exports = {
     }
 
     if(emailCount === 0) {
-      return new MoleculerError('User does not Exist', 409, 'User does not exist')
+      return new MoleculerError('User does not Exist', 404, 'User does not exist')
     }
 
     try {
@@ -55,7 +55,7 @@ module.exports = {
 
     return {
       token: jwt.sign({
-        _id: user[0]._id,
+        id: user[0]._id,
         verified: user[0].verified
       }, privateKey)
     }

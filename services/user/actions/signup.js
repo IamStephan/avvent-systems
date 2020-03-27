@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { MoleculerError } = require('moleculer').Errors;
+const shortid = require('shortid')
+const { MoleculerError } = require('moleculer').Errors
 
 module.exports = {
   visibility: 'published',
@@ -77,6 +78,7 @@ module.exports = {
     let emailCount
 
     let privateKey = 'privateKey'
+    let verify_id = shortid.generate()
 
     let user = {
       first_name: ctx.params.first_name,
@@ -86,7 +88,7 @@ module.exports = {
       password: await bcrypt.hash(ctx.params.password, 5),
       started: new Date(Date.now()),
       verified: false,
-      verify_id: jwt.sign({ email: ctx.params.email }, privateKey)
+      verify_id
     }
 
     try {
@@ -109,15 +111,14 @@ module.exports = {
       return new MoleculerError('Could not create User', 500, 'Server Error')
     }
 
-    try {
-      ctx.call('v1.user.sendVerifyId', {email: ctx.params.email, verify_id: createdUser.verify_id})
-    } catch(e) {
-      console.log(e.message)
-    }
+    this.broker.emit('email', {
+      to: ctx.params.email,
+      text: verify_id
+    })
 
     return {
       token: jwt.sign({
-        _id: createdUser._id,
+        id: createdUser._id,
         verified: false
       }, privateKey)
     }
