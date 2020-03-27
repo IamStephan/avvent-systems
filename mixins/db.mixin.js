@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-const fs = require("fs");
-const mkdir = require("mkdirp").sync;
+const fs = require('fs');
+const mkdir = require('mkdirp').sync;
 
-const DbService	= require("moleculer-db");
+const DbService	= require('moleculer-db');
 
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
@@ -50,7 +50,7 @@ module.exports = function(collection) {
 				if (count == 0) {
 					this.logger.info(`The '${collection}' collection is empty. Seeding the collection...`);
 					await this.seedDB();
-					this.logger.info("Seeding is done. Number of records:", await this.adapter.count());
+					this.logger.info('Seeding is done. Number of records:', await this.adapter.count());
 				}
 			}
 		}
@@ -58,7 +58,7 @@ module.exports = function(collection) {
 
 	if (process.env.MONGO_URI) {
 		// Mongo adapter
-		const MongoAdapter = require("moleculer-db-adapter-mongo");
+		const MongoAdapter = require('moleculer-db-adapter-mongo');
 
 		schema.adapter = new MongoAdapter(process.env.MONGO_URI);
 		schema.collection = collection;
@@ -69,8 +69,8 @@ module.exports = function(collection) {
 		// NeDB file DB adapter
 
 		// Create data folder
-		if (!fs.existsSync("./data")) {
-			mkdir("./data");
+		if (!fs.existsSync('./data')) {
+			mkdir('./data');
 		}
 
 		schema.adapter = new DbService.MemoryAdapter({ filename: `./data/${collection}.db` });
