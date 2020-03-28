@@ -40,6 +40,7 @@ module.exports = {
     signup: { ...require('./actions/signup') },
     verifyUser: { ...require('./actions/verifyUser') },
     login: { ...require('./actions/login') },
+    updateUser: { ...require('./actions/updateUser') },
     requestPasswordReset: { ...require('./actions/requestPasswordResest') },
     resetPassword: { ...require('./actions/resetPassword') },
 
