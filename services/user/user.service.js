@@ -32,7 +32,7 @@ module.exports = {
   collection: 'users',
   
   settings: {
-    fields: ['_id', 'first_name', 'last_name', 'username', 'email', 'password', 'started', 'verified', 'verify_id']
+    fields: ['_id', 'first_name', 'last_name', 'username', 'email', 'password', 'started', 'verified', 'verify_id', 'password_reset_id']
   },
 
   actions: {
@@ -41,6 +41,7 @@ module.exports = {
     verifyUser: { ...require('./actions/verifyUser') },
     login: { ...require('./actions/login') },
     requestPasswordReset: { ...require('./actions/requestPasswordResest') },
+    resetPassword: { ...require('./actions/resetPassword') },
 
     // Public
     auth: { ...require('./actions/auth') },

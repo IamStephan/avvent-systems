@@ -45,8 +45,6 @@ module.exports = {
       return new MoleculerError('Could not fetch user', 500, 'Server Error')
     }
 
-    console.log(user)
-
     let passwordValidate = await bcrypt.compare(ctx.params.password, user[0].password)
 
     if(!passwordValidate) {
